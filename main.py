@@ -72,31 +72,38 @@ if __name__ == "__main__":
     api_key_path = "../../openai_key.txt"
     input_path = "data/"
     input_file_name = "2311.01901.pdf"
+    # input_file_name = None
     output_path = "output/"
 
-    # Extract text from PDF
-    text = extract_text_from_pdf(dir_path=input_path, file_name=input_file_name)
+    if input_file_name is None:
+        print(f"processing all .pdf files in {input_path}:")
+        # get all pdfs from dir
+        input_file_names = list(filter(lambda x: x.endswith('.pdf'), os.listdir(input_path)))
+    else:
+        # if input filename is specified, only reading in that single file
+        input_file_names = [input_file_name]
 
-    # get api key
-    api_key = get_api_key(api_key_path=api_key_path)
-    
-    # send text to OpenAI API
-    client = OpenAI(api_key=api_key)
-    prompt = PROMPT_CONTEXT + text
-    print("Making OpenAI API call...")
-    new_filename = get_new_filename(client=client, message=prompt)
-    print("OpenAI API call finished.")
+    # looping over all file names
+    for input_file_name in input_file_names:
+        # Extract text from PDF
+        text = extract_text_from_pdf(dir_path=input_path, file_name=input_file_name)
 
-    # new_filename = "2023_Hamill_credit_card_promotions.pdf" # temporary filename for code development
+        # get api key
+        api_key = get_api_key(api_key_path=api_key_path)
+        
+        # send text to OpenAI API
+        client = OpenAI(api_key=api_key)
+        prompt = PROMPT_CONTEXT + text
+        print(f"Making OpenAI API call for file {input_file_name}...")
+        new_filename = get_new_filename(client=client, message=prompt)
+        print("OpenAI API call finished.")
 
-    print(new_filename)
+        # copy pdf to new directory under new name
+        shutil.copy(
+            src=input_path + input_file_name,
+            dst=output_path+new_filename, 
+        )
 
-    # copy pdf to new directory under new name
-    shutil.copy(
-        src=input_path + input_file_name,
-        dst=output_path+new_filename, 
-    )
-
-    # assert that file under new name is in the new filepath
-    assert new_filename in os.listdir(output_path)
-    print(f"{input_path}{input_file_name} has been named {new_filename} and copied to {output_path}")
+        # assert that file under new name is in the new filepath
+        assert new_filename in os.listdir(output_path)
+        print(f"{input_path}{input_file_name} has been named {new_filename} and copied to {output_path}")
