@@ -1,5 +1,5 @@
 # Main file for running get paper title
-import shutil, os
+import argparse, shutil, os
 
 from PyPDF2 import PdfReader
 from openai import OpenAI
@@ -66,14 +66,19 @@ PROMPT_CONTEXT = """
 
 
 if __name__ == "__main__":
-    print("Hello world!")
 
-    # variables
-    api_key_path = "../../openai_key.txt"
-    input_path = "data/"
-    input_file_name = "2311.01901.pdf"
-    # input_file_name = None
-    output_path = "output/"
+    # Parsing command line arguments
+    parser = argparse.ArgumentParser(description='Process some arguments.', argument_default=None)
+    parser.add_argument('--input_path', required=False, default='.')
+    parser.add_argument('--input_file_name', required=False, default=None)
+    parser.add_argument('--output_path', required=False, default='.')
+    parser.add_argument('--api_key_path', required=True)
+    
+    args = parser.parse_args()
+    input_path = args.input_path
+    input_file_name = args.input_file_name
+    output_path = args.output_path
+    api_key_path = args.api_key_path
 
     if input_file_name is None:
         print(f"processing all .pdf files in {input_path}:")
