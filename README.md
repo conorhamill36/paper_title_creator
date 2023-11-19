@@ -12,8 +12,14 @@ For a directory of papers:
 
 ### TODOs:
 - [ ] More secure way of reading in API key
-- [ ] Using NLP package like NLTK to offer offline way of parsing papers
+- [ ] Using NLP package like NLTK/spaCy to offer offline way of parsing papers
 - [ ] Additional command line arguments:
   - [ ] OpenAI/NLTK mode
   - [ ] Model option (e.g. 'gpt-3.5-turbo')
-- [ ] OpenAI credits cost estimate 
+- [ ] OpenAI credits cost estimate
+- [ ] Move main function to its own function so can be imported and used in notebooks
+- [ ] Make sure population of duplicate files is avoided:
+	- [ ] Check if that file has already been copied to the output directory
+	- [ ] What happens if there are papers that share names and years? and topics?
+	- [ ] Maybe have a letter after the name, so 2023_Li_b_hallucinations.pdf?
+	- [ ] Maybe a command line argument to copy or create differently named files?
