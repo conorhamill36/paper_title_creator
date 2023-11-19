@@ -23,3 +23,6 @@ For a directory of papers:
 	- [ ] What happens if there are papers that share names and years? and topics?
 	- [ ] Maybe have a letter after the name, so 2023_Li_b_hallucinations.pdf?
 	- [ ] Maybe a command line argument to copy or create differently named files?
+- [ ] Units tests
+- [ ] Think of more edge cases for file names, text parsing etc.
+- [ ]Some way of benchmarking the performance of different methods, e.g. how many years and names of ~20 papers were extracted correctly?
