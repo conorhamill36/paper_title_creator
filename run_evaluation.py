@@ -9,7 +9,7 @@ from helpers import evaluate_model
 from main import get_paper_file_name
 
 
-def run_evaluation(input_path, df_path, api_key_path):
+def run_evaluation(input_path: str, df_path: str, api_key_path: str) -> dict[str, float]:
     df_test = pd.read_csv(input_path + df_path)
 
     input_file_names = list(
