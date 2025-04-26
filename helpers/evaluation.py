@@ -25,7 +25,6 @@ TEST_SET_FILENAMES: list[str] = [
 def evaluate_model(
     preds: np.array,
     df_test: pd.DataFrame,
-    filenames: list[str] = None,
     years_col: str = "year",
     name_col: str = "name",
 ) -> dict[str, float]:
