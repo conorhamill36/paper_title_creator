@@ -1,40 +1,13 @@
 # Main file for running get paper title
-import argparse, shutil, os
+import argparse
+import os
+import shutil
 
 import openai
-from PyPDF2 import PdfReader
 from openai import OpenAI
 
-
-def get_api_key(api_key_path: str):
-    """
-    Gets api key from filepath
-    """
-    with open(api_key_path) as f:
-        api_key = f.readline().strip()
-    return api_key
-
-
-def extract_text_from_pdf(dir_path: str, file_name: str):
-    """
-    Uses reader object to read in first page of pdf in dir_path, under assumption all important will be on the first page
-    """
-    reader = PdfReader(dir_path + file_name)
-    page = reader.pages[0]
-    return page.extract_text()
-
-
-def openai_api_call(client: openai.Client, message: str, model: str = "gpt-3.5-turbo"):
-    """
-    Makes call to openai API and returns text of response
-    """
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": message},
-        ],
-    )
-    return response.choices[0].message.content
+from helpers.llm_helpers import openai_api_call, get_api_key, PROMPT_CONTEXT
+from helpers.text_helpers import extract_text_from_pdf
 
 
 def get_new_filename(
@@ -65,14 +38,6 @@ def get_new_filename(
     )  # joining filename components and adding file extension
 
     return new_filename
-
-
-PROMPT_CONTEXT = """
-    You are a helpful assistant who helps name the files for academic papers.
-    The following is text extracted from the first page of an academic paper.
-    Return a single slug containing the year, surname of the author and two/three words describing the paper subject, separated by underscores.
-
-"""
 
 
 def get_paper_file_name(
