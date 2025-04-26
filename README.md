@@ -7,9 +7,9 @@ A single paper can be read in by specifying the input_path and input_file_name a
 ### Setting up the environment
 This project is managed using [uv](https://docs.astral.sh/uv/).
 
-Install the environment with
+Sync your environment with
 ```
-uv pip install --resolve uv:lock
+uv sync
 ```
 
 ### Example usage
