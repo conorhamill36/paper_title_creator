@@ -29,16 +29,15 @@ def evaluate_model(
     years_col: str = "year",
     name_col: str = "name",
 ) -> dict[str, float]:
-    if filenames is None:
-        filenames = TEST_SET_FILENAMES
 
     # parsing years and names from preds
     years = [int(pred.split("_")[0]) for pred in preds]
     names = [pred.split("_")[1] for pred in preds]
 
     # making evaluation dictionary for outputting
-    eval_dict = {}
-    eval_dict["years_accuracy"] = accuracy_score(years, df_test[years_col].values)
-    eval_dict["names_accuracy"] = accuracy_score(names, df_test[name_col].values)
+    eval_dict = {
+        "years_accuracy": accuracy_score(years, df_test[years_col].values),
+        "names_accuracy": accuracy_score(names, df_test[name_col].values),
+    }
 
     return eval_dict
