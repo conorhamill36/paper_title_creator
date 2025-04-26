@@ -1,0 +1,6 @@
+output/*.pdf
+*.swp
+.ipynb_checkpoints/*
+__pycache__/*
+helpers/__pycache__/*
+notebooks/*.ipynb
