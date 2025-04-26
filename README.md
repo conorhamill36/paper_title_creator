@@ -20,6 +20,7 @@ The evaluation can be undertaken by using the `run_evaluation.py` script. An exa
 ### TODOs:
 - [x] Implement benchmarking of a model's ability to get the years and first author from a paper
   - [ ] Extend the test set to more papers
+- [ ] Implement using uv package management
 - [ ] More secure way of reading in API key
 - [ ] Using NLP package like NLTK/spaCy to offer offline way of parsing papers
 - [ ] Additional command line arguments:
@@ -32,6 +33,8 @@ The evaluation can be undertaken by using the `run_evaluation.py` script. An exa
 	- [ ] What happens if there are papers that share names and years? and topics?
 	- [ ] Maybe have a letter after the name, so 2023_Li_b_hallucinations.pdf?
 	- [ ] Maybe a command line argument to copy or create differently named files?
-- [ ] Units tests
+- [ ] Unit tests
 - [ ] Think of more edge cases for file names, text parsing etc.
-- [ ]Some way of benchmarking the performance of different methods, e.g. how many years and names of ~20 papers were extracted correctly?
+- [ ] Implement access to multiple LLMs through LiteLLM
+- [ ] Implement parsing of PDF using MarkItDown
+- [ ] Some way of benchmarking the performance of different methods, e.g. how many years and names of ~20 papers were extracted correctly?
