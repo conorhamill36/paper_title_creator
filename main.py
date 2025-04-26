@@ -116,7 +116,7 @@ def create_paper_files(
             input_path=input_path,
             input_file_name=input_file_name,
             api_key_path=api_key_path,
-        )  # TODO: check names of variables here
+        )
 
         # copy pdf to new directory under new name
         shutil.copy(
