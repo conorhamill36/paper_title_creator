@@ -4,3 +4,5 @@ output/*.pdf
 __pycache__/*
 helpers/__pycache__/*
 notebooks/*.ipynb
+run_example_gpt_paper_title.sh
+run_example_evaluation.sh
