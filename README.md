@@ -39,3 +39,4 @@ The evaluation can be undertaken by using the `run_evaluation.py` script. An exa
 - [ ] Implement access to multiple LLMs through LiteLLM
 - [ ] Implement parsing of PDF using MarkItDown
 - [ ] Some way of benchmarking the performance of different methods, e.g. how many years and names of ~20 papers were extracted correctly?
+- [ ] Add UI through streamlit
