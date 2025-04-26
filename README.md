@@ -6,9 +6,9 @@ A single paper can be read in by specifying the input_path and input_file_name a
 
 ### Example usage
 For a single paper:  
-`python main.py --input_path='papers/' --input_file_name='2309.12288.pdf' --api_key_path="../../openai_key.txt" --output_path="output/"`  
+`python gpt_paper_title.py --input_path='papers/' --input_file_name='2309.12288.pdf' --api_key_path="../../openai_key.txt" --output_path="output/"`  
 For a directory of papers:  
-`python main.py --input_path='papers/' --api_key_path="../../openai_key.txt" --output_path="output/"`
+`python gpt_paper_title.py --input_path='papers/' --api_key_path="../../openai_key.txt" --output_path="output/"`
 
 ### Evaluation process
 The `test_set/` directory contains both the paper PDFs used in the evaluation and a CSV containing the file names and correct years and names for the papers.
@@ -21,6 +21,7 @@ The evaluation can be undertaken by using the `run_evaluation.py` script. An exa
 - [x] Implement benchmarking of a model's ability to get the years and first author from a paper
   - [ ] Extend the test set to more papers
 - [ ] Implement using uv package management
+- [ ] Implement logging with a proper package, e.g. loguru
 - [ ] More secure way of reading in API key
 - [ ] Using NLP package like NLTK/spaCy to offer offline way of parsing papers
 - [ ] Additional command line arguments:
