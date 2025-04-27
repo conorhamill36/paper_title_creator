@@ -52,7 +52,7 @@ def get_new_filename(
     ]  # making all description strings lowercase
 
     new_filename = (
-            "_".join([year, name, *descriptions]) + file_extension
+        "_".join([year, name, *descriptions]) + file_extension
     )  # joining filename components and adding file extension
 
     return new_filename
