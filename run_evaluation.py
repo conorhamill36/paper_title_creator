@@ -13,6 +13,24 @@ from helpers import evaluate_model
 def run_evaluation(
     input_path: str, df_path: str, api_key_path: str
 ) -> dict[str, float]:
+    """
+    Estimates ability of model to correctly extract years and names of papers.
+    Papers in `input_path` have names generated, which are then compared to the ground truth data in `df_path`.
+
+    Parameters
+    ----------
+    input_path : str
+        Directory of files to include in evaluation. All PDFs in this directory are included in the evaluation.
+    df_path : str
+        CSV file containing file names, author names, and years, to be compared to LLM-generated names.
+    api_key_path : str
+        Path to the file where the LLM API key is located.
+
+    Returns
+    -------
+    dict[str, float]
+        Dictionary of metrics, including accuracy on getting the years and author names correct.
+    """
     df_test = pd.read_csv(input_path + df_path)
 
     input_file_names = list(
