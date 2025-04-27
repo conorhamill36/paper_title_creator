@@ -5,6 +5,7 @@ import shutil
 
 import openai
 from openai import OpenAI
+from loguru import logger
 
 from helpers.llm_helpers import openai_api_call, get_api_key, PROMPT_CONTEXT
 from helpers.text_helpers import extract_text_from_pdf
@@ -53,9 +54,9 @@ def get_paper_file_name(
     # send text to OpenAI API
     client = OpenAI(api_key=api_key)
     prompt = PROMPT_CONTEXT + text
-    print(f"Making OpenAI API call for file {input_file_name}...")
+    logger.info(f"Making OpenAI API call for file {input_file_name}...")
     new_filename = get_new_filename(client=client, message=prompt)
-    print("OpenAI API call finished.")
+    logger.info("OpenAI API call finished.")
 
     return new_filename
 
@@ -64,13 +65,16 @@ def create_paper_files(
     input_path: str, output_path: str, api_key_path: str, input_file_name: str = None
 ):
     if input_file_name is None:
-        print(f"processing all .pdf files in {input_path}:")
+        logger.info(f"processing all .pdf files in {input_path}:")
         # get all pdfs from dir
         input_file_names = list(
             filter(lambda x: x.endswith(".pdf"), os.listdir(input_path))
         )
     else:
         # if input filename is specified, only reading in that single file
+        logger.info(
+            "Only one input filename is specified, so only processing a single file"
+        )
         input_file_names = [input_file_name]
 
     # looping over all file names
@@ -83,22 +87,26 @@ def create_paper_files(
             api_key_path=api_key_path,
         )
 
-        # copy pdf to new directory under new name
+        logger.info("copying pdf to new directory under new name")
+
         shutil.copy(
             src=input_path + input_file_name,
             dst=output_path + new_filename,
         )
-        print(
+        logger.info(
             f"{input_path}{input_file_name} has been named {new_filename} and copied to {output_path}"
         )
 
         # assert that file under new name is in the new filepath
-        assert new_filename in os.listdir(output_path)
+        assert new_filename in os.listdir(
+            output_path
+        ), f"{new_filename} not found in {output_path}"
 
 
 if __name__ == "__main__":
 
     # Parsing command line arguments
+    logger.debug("Parsing command line arguments")
     parser = argparse.ArgumentParser(
         description="Process some arguments.", argument_default=None
     )

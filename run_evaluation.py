@@ -4,6 +4,7 @@ import argparse
 import os
 
 import pandas as pd
+from loguru import logger
 
 from gpt_paper_title import get_paper_file_name
 from helpers import evaluate_model
@@ -28,7 +29,7 @@ def run_evaluation(
 
 
 if __name__ == "__main__":
-    print("Running evaluation")
+    logger.info("Running evaluation")
 
     # Parsing command line arguments
     parser = argparse.ArgumentParser(
@@ -49,4 +50,4 @@ if __name__ == "__main__":
         api_key_path=api_key_path,
     )
 
-    print(f"Model evaluation metrics are: {eval_dict}")
+    logger.info(f"Model evaluation metrics are: {eval_dict}")

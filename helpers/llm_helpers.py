@@ -1,5 +1,6 @@
 """Helper functions related to LLM usage"""
 
+from loguru import logger
 import openai
 
 
@@ -7,6 +8,7 @@ def get_api_key(api_key_path: str):
     """
     Gets api key from filepath
     """
+    logger.debug(f"Reading API key from {api_key_path}")
     with open(api_key_path) as f:
         api_key = f.readline().strip()
     return api_key
