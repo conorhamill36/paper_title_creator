@@ -16,10 +16,27 @@ def get_new_filename(
     message: str,
     model: str = "gpt-3.5-turbo",
     file_extension=".pdf",
-):
+) -> str:
     """
     Returns new file name, using openai to generate a name
+
+    Parameters
+    ----------
+    client : openai.Client
+        OpenAI client to execute API call to LLM.
+    message : str
+        String to pass to the LLM.
+    model : str, default "gpt-3.5-turbo"
+        Name of LLM to use for API call.
+    file_extension : str, default ".pdf"
+        String of file extension to add to end of file names.
+
+    Returns
+    -------
+    new_filename : str
+        Complete new filename in format "{year}_{first author}_{key_words}.pdf".
     """
+
     api_response = openai_api_call(client=client, message=message, model=model)
     # validate filename
 
@@ -35,7 +52,7 @@ def get_new_filename(
     ]  # making all description strings lowercase
 
     new_filename = (
-        "_".join([year, name, *descriptions]) + ".pdf"
+            "_".join([year, name, *descriptions]) + file_extension
     )  # joining filename components and adding file extension
 
     return new_filename
