@@ -98,6 +98,23 @@ def get_paper_file_name(
 def create_paper_files(
     input_path: str, output_path: str, api_key_path: str, input_file_name: str = None
 ):
+    """
+    Creates names for a paper or directory of papers using an LLM and copies these PDFs to a new directory with their
+    new names.
+
+    Parameters
+    ----------
+    input_path : str
+        Directory containing input PDFs. If `input_file_name` is not provided, all files in this directory are processed.
+    output_path : str
+        Directory files are to be copied to, with new names.
+    api_key_path : str
+        Path to file containing api key.
+    input_file_name : str, default None
+        Name of file in `input_path` to be processed.
+        If not provided, all PDFs in `input_path` are processed.
+    """
+
     if input_file_name is None:
         logger.info(f"processing all .pdf files in {input_path}:")
         # get all pdfs from dir
