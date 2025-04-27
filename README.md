@@ -28,15 +28,15 @@ The evaluation can be undertaken by using the `run_evaluation.py` script. An exa
 ### TODOs:
 - [x] Implement benchmarking of a model's ability to get the years and first author from a paper
   - [ ] Extend the test set to more papers
-- [ ] Implement using uv package management
-- [ ] Implement logging with a proper package, e.g. loguru
+- [x] Implement using uv package management
+- [x] Implement logging with a proper package, e.g. loguru
 - [ ] More secure way of reading in API key
 - [ ] Using NLP package like NLTK/spaCy to offer offline way of parsing papers
 - [ ] Additional command line arguments:
   - [ ] OpenAI/NLTK mode
   - [ ] Model option (e.g. 'gpt-3.5-turbo')
 - [ ] OpenAI credits cost estimate
-- [ ] Move main function to its own function so can be imported and used in notebooks
+- [x] Move main function to its own function so can be imported and used in notebooks
 - [ ] Make sure population of duplicate files is avoided:
 	- [ ] Check if that file has already been copied to the output directory
 	- [ ] What happens if there are papers that share names and years? and topics?
