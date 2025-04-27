@@ -28,6 +28,25 @@ def evaluate_model(
     years_col: str = "year",
     name_col: str = "name",
 ) -> dict[str, float]:
+    """
+    Function to estimate accuracy of LLM-generated names against a ground truth dataframe.
+
+    Parameters
+    ----------
+    preds : np.array
+        Numpy array of type string, containing generated file names.
+    df_test : pd.DataFrame
+        Dataframe containing file names of papers and ground truth values of author names and years.
+    years_col : str, default "year"
+        Column name in `df_test` containing the publication year of each paper.
+    name_col : str
+        Column name in `df_test` containing the first author name of each paper.
+
+    Returns
+    -------
+    eval_dict : dict[str, float]
+        Dictionary of metrics, including accuracy of years and author names in generated names in `preds`.
+    """
 
     # parsing years and names from preds
     years = [int(pred.split("_")[0]) for pred in preds]
